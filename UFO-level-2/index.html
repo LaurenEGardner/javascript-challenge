@@ -36,13 +36,22 @@
                   <div class="form-group">
                     <ul class="list-group" id="filters">
                       <li class="filter list-group-item">
-                        <label for="date">Enter a Date</label>
+                        <label for="date">Select Your Filter</label>
+                        <select id="selFilter" class="sel-filter">
+                          <option value="datetime">Date</option>
+                          <option value="city">City</option>
+                          <option value="state">State</option>
+                          <option value="country">Country</option>
+                          <option value="shape">Shape</option>
+                        </select>
                         <input class="form-control" id="datetime" type="text" placeholder="1/11/2011">
                       </li>
                     </ul>
                   </div>
                   <button id="filter-btn" type="button" class="btn btn-default">Filter Table</button>
+                  <button id="refresh-btn" type="button" class="btn btn-default">Refresh Table</button>
                 </form>
+
               </div>
             </div>
           </aside>

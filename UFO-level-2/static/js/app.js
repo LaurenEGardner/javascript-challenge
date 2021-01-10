@@ -5,6 +5,7 @@ var table = d3.select('#ufo-table');
 
 //select the button
 var button = d3.select("#filter-btn").on("click", runEnter);
+var button = d3.select("#refresh-btn").on("click", runRefresh);
 
 //Create listeners
 //button.on("click", runEnter);
@@ -34,17 +35,22 @@ function runEnter() {
     d3.event.preventDefault();
 
     //Select the input element and get the raw HTML node
-    var inputElement = d3.select("#datetime");
+    inputElement = d3.select("#datetime");
 
     //Get the value property of the input element
-    var inputValue = inputElement.property("value");
+    inputValue = inputElement.property("value");
 
-    console.log(inputValue);
-    console.log(tableData);
+    //Get what the user is trying to filter by
+    filterBy = d3.select('#selFilter').property('value');
 
-    var filteredData = tableData.filter(item => item.datetime === inputValue);
+
+    console.log(filterBy);
+    // console.log(tableData);
+
+    var filteredData = tableData.filter(item => item.filterBy === inputValue);
 
     console.log(filteredData);
+    console.log(inputValue);
     
     var table = d3.select("#ufo-table");
     var tbody = table.select("tbody");
@@ -62,4 +68,8 @@ function runEnter() {
         cell.text(value);
     });
 });
+};
+
+function runRefresh(){
+    location.reload();
 };

@@ -4,14 +4,10 @@ var tableData = data;
 var table = d3.select('#ufo-table');
 
 //select the button
-var button = d3.select("#filter-btn");
+var button = d3.select("#filter-btn").on("click", runEnter);
 
-// Select the form
-var form = d3.select("#datetime");
-
-//Create Event handlers
-button.on("click", runEnter);
-form.on("submit", runEnter);
+//Create listeners
+//button.on("click", runEnter);
 
 // Get a reference to the table body
 var tbody = d3.select("tbody");
@@ -32,9 +28,6 @@ Object.entries(sighting).forEach(function([key, value]) {
    
 });
 
-function removeTableBody(){
-    d3.selectAll("tbody").remove();
-};
 
 function runEnter() {
     //Prevent the page from refreshing
@@ -53,7 +46,10 @@ function runEnter() {
 
     console.log(filteredData);
     
-    removeTableBody();
+    var table = d3.select("#ufo-table");
+    var tbody = table.select("tbody");
+    tbody.html("");
+
     var new_tbody = table.append('tbody');
 
     filteredData.forEach(function(sighting){

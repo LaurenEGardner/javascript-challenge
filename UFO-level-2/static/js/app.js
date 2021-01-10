@@ -41,13 +41,29 @@ function runEnter() {
     inputValue = inputElement.property("value");
 
     //Get what the user is trying to filter by
-    filterBy = d3.select('#selFilter').property('value');
+    dropdown = d3.select('#selFilter');
+    filterBy = dropdown.property("value");
 
 
     console.log(filterBy);
     // console.log(tableData);
 
-    var filteredData = tableData.filter(item => item.filterBy === inputValue);
+    var filteredData = {};
+    if (filterBy === "datetime") {
+        filteredData = tableData.filter(item => item.datetime === inputValue);
+    }
+    else if (filterBy === "city") {
+        filteredData = tableData.filter(item => item.city === inputValue);
+    }
+    else if (filterBy === "state") {
+        filteredData = tableData.filter(item => item.state === inputValue);
+    }
+    else if (filterBy === "country") {
+        filteredData = tableData.filter(item => item.country === inputValue);
+    }
+    else if (filterBy === "shape") {
+        filteredData = tableData.filter(item => item.shape === inputValue);
+    };
 
     console.log(filteredData);
     console.log(inputValue);
